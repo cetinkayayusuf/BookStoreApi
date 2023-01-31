@@ -3,7 +3,7 @@ using WebApi.DBOperations;
 using WebApi.BookOperations.GetBooks;
 using WebApi.BookOperations.AddBook;
 using WebApi.BookOperations.UpdateBook;
-using WebApi.BookOperations.GetById;
+using WebApi.BookOperations.GetBookDetail;
 
 namespace WebApi.Controllers
 {
@@ -28,10 +28,10 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            GetByIdQuery query = new GetByIdQuery(_context);
+            GetBookDetailQuery query = new GetBookDetailQuery(_context);
             try
             {
-                query.Id = id;
+                query.BookId = id;
                 var result = query.Handle();
                 return Ok(result);
             }
@@ -63,7 +63,7 @@ namespace WebApi.Controllers
             UpdateBookCommand command = new UpdateBookCommand(_context);
             try
             {
-                command.Id = id;
+                command.BookId = id;
                 command.Model = updatedBook;
                 command.Handle();
             }

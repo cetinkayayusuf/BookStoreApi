@@ -4,7 +4,7 @@ namespace WebApi.BookOperations.UpdateBook
 {
     public class UpdateBookCommand
     {
-        public int Id { get; set; }
+        public int BookId { get; set; }
         public UpdateBookModel Model { get; set; }
         private readonly BookStoreDbContext _dbContext;
         public UpdateBookCommand(BookStoreDbContext dbContext)
@@ -14,7 +14,7 @@ namespace WebApi.BookOperations.UpdateBook
 
         public void Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(x => x.Id == Id);
+            var book = _dbContext.Books.SingleOrDefault(x => x.Id == BookId);
 
             if (book is null)
                 throw new InvalidOperationException("Book not found");

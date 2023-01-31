@@ -1,25 +1,25 @@
 using WebApi.DBOperations;
 using WebApi.Common;
 
-namespace WebApi.BookOperations.GetById
+namespace WebApi.BookOperations.GetBookDetail
 {
-    public class GetByIdQuery
+    public class GetBookDetailQuery
     {
-        public int Id { get; set; }
+        public int BookId { get; set; }
         private readonly BookStoreDbContext _dbContext;
-        public GetByIdQuery(BookStoreDbContext dbContext)
+        public GetBookDetailQuery(BookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public GetByIdViewModel Handle()
+        public BookDetailViewModel Handle()
         {
-            var book = _dbContext.Books.Where(x => x.Id == Id).SingleOrDefault<Book>();
+            var book = _dbContext.Books.Where(x => x.Id == BookId).SingleOrDefault<Book>();
 
             if (book is null)
                 throw new InvalidOperationException("Book not found");
 
-            GetByIdViewModel vm = new GetByIdViewModel()
+            BookDetailViewModel vm = new BookDetailViewModel()
             {
                 Title = book.Title,
                 Genre = ((GenreEnum)book.GenreId).ToString(),
@@ -31,7 +31,7 @@ namespace WebApi.BookOperations.GetById
         }
     }
 
-    public class GetByIdViewModel
+    public class BookDetailViewModel
     {
         public string Title { get; set; }
         public string Genre { get; set; }
