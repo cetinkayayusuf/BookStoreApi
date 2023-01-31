@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.DBOperations;
 
 namespace WebApi.BookOperations.AddBook
@@ -6,9 +7,11 @@ namespace WebApi.BookOperations.AddBook
     {
         public AddBookModel Model { get; set; }
         private readonly BookStoreDbContext _dbContext;
-        public AddBookCommand(BookStoreDbContext dbContext)
+        private readonly IMapper _mapper;
+        public AddBookCommand(BookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public void Handle()
@@ -18,11 +21,7 @@ namespace WebApi.BookOperations.AddBook
             if (book is not null)
                 throw new InvalidOperationException("Book exist");
 
-            book = new Book();
-            book.Title = Model.Title;
-            book.GenreId = Model.GenreId;
-            book.PageCount = Model.PageCount;
-            book.PublishDate = Model.PublishDate;
+            book = _mapper.Map<Book>(Model);
 
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();
