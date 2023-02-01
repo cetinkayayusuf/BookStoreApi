@@ -2,6 +2,7 @@ using AutoMapper;
 using WebApi.BookOperations.AddBook;
 using WebApi.BookOperations.GetBookDetail;
 using WebApi.BookOperations.GetBooks;
+using WebApi.Entities;
 
 namespace WebApi.Common
 {

@@ -1,5 +1,6 @@
 using WebApi.DBOperations;
 using AutoMapper;
+using WebApi.Entities;
 
 namespace WebApi.BookOperations.GetBookDetail
 {

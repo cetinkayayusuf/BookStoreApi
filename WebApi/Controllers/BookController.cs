@@ -6,7 +6,6 @@ using WebApi.BookOperations.UpdateBook;
 using WebApi.BookOperations.GetBookDetail;
 using WebApi.BookOperations.DeleteBook;
 using AutoMapper;
-using FluentValidation.Results;
 using FluentValidation;
 
 namespace WebApi.Controllers
