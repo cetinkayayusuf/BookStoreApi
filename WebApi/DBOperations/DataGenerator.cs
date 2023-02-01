@@ -11,6 +11,18 @@ namespace WebApi.DBOperations
             {
                 if (context.Books.Any())
                     return;
+
+                context.Genres.AddRange(
+                    new Genre
+                    {
+                        Name = "Scifi"
+                    },
+                    new Genre
+                    {
+                        Name = "Life"
+                    }
+                );
+
                 context.Books.AddRange(
                     new Book
                     {
