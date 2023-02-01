@@ -23,7 +23,7 @@ namespace WebApi.Application.GenreOperations.Commands.UpdateGenre
             if (_dbContext.Genres.Any(x => x.Name.ToLower() == Model.Name.ToLower() && x.Id != GenreId))
                 throw new InvalidOperationException("Genre with same name exists");
 
-            genre.Name = Model.Name.Trim() == default ? Model.Name : genre.Name;
+            genre.Name = string.IsNullOrEmpty(Model.Name.Trim()) ? genre.Name : Model.Name;
             genre.IsActive = Model.IsActive;
 
             _dbContext.SaveChanges();

@@ -17,7 +17,7 @@ namespace WebApi.Application.GenreOperations.Commands.AddGenre
 
         public void Handle()
         {
-            var genre = _dbContext.Genres.SingleOrDefault(x => x.Name == Model.Name);
+            var genre = _dbContext.Genres.SingleOrDefault(x => x.Name.ToLower() == Model.Name.ToLower());
 
             if (genre is not null)
                 throw new InvalidOperationException("Genre exist");
