@@ -7,8 +7,8 @@ namespace WebApi.Application.AuthorOperations.Commands.UpdateAuthor
     {
         public int AuthorId;
         public UpdateAuthorModel Model;
-        private readonly BookStoreDbContext _dbContext;
-        public UpdateAuthorCommand(BookStoreDbContext dbContext)
+        private readonly IBookStoreDbContext _dbContext;
+        public UpdateAuthorCommand(IBookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -22,7 +22,6 @@ namespace WebApi.Application.AuthorOperations.Commands.UpdateAuthor
             author.FirstName = string.IsNullOrEmpty(Model.FirstName.Trim()) ? author.FirstName : Model.FirstName;
             author.LastName = string.IsNullOrEmpty(Model.LastName.Trim()) ? author.LastName : Model.LastName;
             author.BirthDate = Model.BirthDate != default ? Model.BirthDate : author.BirthDate;
-
 
             _dbContext.SaveChanges();
         }

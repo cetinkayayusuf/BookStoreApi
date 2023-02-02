@@ -8,7 +8,5 @@ namespace WebApi.Application.AuthorOperations.Queries.GetAuthorDetail
         {
             RuleFor(query => query.AuthorId).GreaterThan(0);
         }
-
-
     }
 }

@@ -6,8 +6,8 @@ namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthor
     public class DeleteAuthorCommand
     {
         public int AuthorId;
-        private readonly BookStoreDbContext _dbContext;
-        public DeleteAuthorCommand(BookStoreDbContext dbContext)
+        private readonly IBookStoreDbContext _dbContext;
+        public DeleteAuthorCommand(IBookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -21,7 +21,7 @@ namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthor
             if (author.Book.Count() > 0)
                 throw new InvalidOperationException("Author has book(s), cannot delete");
 
-            _dbContext.Remove(author);
+            _dbContext.Authors.Remove(author);
             _dbContext.SaveChanges();
         }
     }

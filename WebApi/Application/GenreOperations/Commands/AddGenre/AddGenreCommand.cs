@@ -7,9 +7,9 @@ namespace WebApi.Application.GenreOperations.Commands.AddGenre
     public class AddGenreCommand
     {
         public AddGenreModel Model { get; set; }
-        private readonly BookStoreDbContext _dbContext;
+        private readonly IBookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
-        public AddGenreCommand(BookStoreDbContext dbContext, IMapper mapper)
+        public AddGenreCommand(IBookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
