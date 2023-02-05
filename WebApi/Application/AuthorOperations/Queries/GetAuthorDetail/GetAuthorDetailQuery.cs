@@ -20,7 +20,7 @@ namespace WebApi.Application.AuthorOperations.Queries.GetAuthorDetail
         {
             var author = _dbContext.Authors.Include(x => x.Book).SingleOrDefault(x => x.Id == AuthorId);
             if (author is null)
-                throw new InvalidOperationException("Author is not found");
+                throw new InvalidOperationException("Author not found");
 
             AuthorDetailViewModel vm = _mapper.Map<AuthorDetailViewModel>(author);
             return vm;
