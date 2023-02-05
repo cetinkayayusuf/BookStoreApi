@@ -20,7 +20,7 @@ namespace WebApi.Application.GenreOperations.Commands.UpdateGenre
             if (genre is null)
                 throw new InvalidOperationException("Genre not found");
 
-            if (_dbContext.Genres.Any(x => x.Name.ToLower() == Model.Name.ToLower() && x.Id != GenreId))
+            if (_dbContext.Genres.Any(x => Model.Name != null && x.Name.ToLower() == Model.Name.ToLower() && x.Id != GenreId))
                 throw new InvalidOperationException("Genre with same name exists");
 
             genre.Name = string.IsNullOrEmpty(Model.Name.Trim()) ? genre.Name : Model.Name;
