@@ -20,7 +20,7 @@ namespace WebApi.Application.AuthorOperations.Commands.AddAuthor
         {
             var author = _dbContext.Authors.SingleOrDefault(x => x.FirstName.ToLower() == Model.FirstName.ToLower() && x.LastName.ToLower() == Model.LastName.ToLower() && x.BirthDate.Date == Model.BirthDate.Date);
             if (author is not null)
-                throw new InvalidOperationException("Author already exist");
+                throw new InvalidOperationException("Author exist");
 
             author = _mapper.Map<Author>(Model);
 
